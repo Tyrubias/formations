@@ -83,8 +83,22 @@ export class DanceStage extends LitElement {
         <canvas id="stage" resize></canvas>
       </div>
       <div id="controls">
-        <button @click="${this.activateAddDancer}">Add Dancer</button>
-        <button @click="${this.activateRemoveDancer}">Remove Dancer</button>
+        <input
+          id="add-dancer-action"
+          name="action"
+          type="radio"
+          value="add-dancer"
+          @click=${this.activateAddDancer}
+        />
+        <label for="add-dancer-action">Add Dancer</label>
+        <input
+          id="remove-dancer-action"
+          name="action"
+          type="radio"
+          value="remove-dancer"
+          @click=${this.activateRemoveDancer}
+        />
+        <label for="remove-dancer-action">Remove Dancer</label>
       </div>`;
   }
 }
