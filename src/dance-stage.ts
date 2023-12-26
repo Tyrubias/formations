@@ -15,6 +15,11 @@ export class DanceStage extends LitElement {
       height: 75vh;
       border: 1px solid black;
     }
+
+    .active-tool {
+      color: green;
+      box-shadow: 0 5px 15px rgba(145, 92, 182, 0.4);
+    }
   `;
 
   addDancerTool?: paper.Tool;
@@ -70,11 +75,21 @@ export class DanceStage extends LitElement {
     }
   }
 
-  activateAddDancer(): void {
+  activateAddDancer(event: Event): void {
+    const activeToolButtons = this.renderRoot.querySelectorAll('.active-tool');
+    activeToolButtons.forEach((value) => value.classList.remove('active-tool'));
+
+    (event.target as HTMLButtonElement | null)?.classList.add('active-tool');
+
     this.addDancerTool?.activate();
   }
 
-  activateRemoveDancer(): void {
+  activateRemoveDancer(event: Event): void {
+    const activeToolButtons = this.renderRoot.querySelectorAll('.active-tool');
+    activeToolButtons.forEach((value) => value.classList.remove('active-tool'));
+
+    (event.target as HTMLButtonElement | null)?.classList.add('active-tool');
+
     this.removeDancerTool?.activate();
   }
 
@@ -83,22 +98,8 @@ export class DanceStage extends LitElement {
         <canvas id="stage" resize></canvas>
       </div>
       <div id="controls">
-        <input
-          id="add-dancer-action"
-          name="action"
-          type="radio"
-          value="add-dancer"
-          @click=${this.activateAddDancer}
-        />
-        <label for="add-dancer-action">Add Dancer</label>
-        <input
-          id="remove-dancer-action"
-          name="action"
-          type="radio"
-          value="remove-dancer"
-          @click=${this.activateRemoveDancer}
-        />
-        <label for="remove-dancer-action">Remove Dancer</label>
+        <button @click=${this.activateAddDancer}>Add Dancer</button>
+        <button @click=${this.activateRemoveDancer}>Remove Dancer</button>
       </div>`;
   }
 }
