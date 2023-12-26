@@ -1,8 +1,8 @@
-import { LitElement, TemplateResult, css, html } from "lit";
-import { customElement } from "lit/decorators.js";
-import paper from "paper";
+import { LitElement, TemplateResult, css, html } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import paper from 'paper';
 
-@customElement("dance-stage")
+@customElement('dance-stage')
 export class DanceStage extends LitElement {
   static override styles = css`
     canvas[resize] {
@@ -44,8 +44,8 @@ export class DanceStage extends LitElement {
         dancerLayer.activate();
 
         const dancer = new paper.Path.Circle(event.downPoint, 20);
-        dancer.name = "dancer";
-        dancer.fillColor = new paper.Color("red");
+        dancer.name = 'dancer';
+        dancer.fillColor = new paper.Color('red');
 
         previousLayer.activate();
       };
@@ -58,7 +58,7 @@ export class DanceStage extends LitElement {
 
         const target = event.item;
         if (target) {
-          if (target.name === "dancer") {
+          if (target.name === 'dancer') {
             target.remove();
           }
         }
@@ -93,7 +93,7 @@ function drawGrid(boundingRectangle: paper.Rectangle, cellSize: number) {
   const verticalCellCount = boundingRectangle.height / cellSize;
   const horizontalCellCount = boundingRectangle.width / cellSize;
 
-  for (let i = 0; i <= horizontalCellCount; i++) {
+  for (let i = 0; i <= horizontalCellCount; i += 1) {
     const horizontalOffset =
       Math.ceil(boundingRectangle.left / cellSize) * cellSize;
     const horizontalPosition = horizontalOffset + i * cellSize;
@@ -105,10 +105,10 @@ function drawGrid(boundingRectangle: paper.Rectangle, cellSize: number) {
     );
 
     const line = new paper.Path.Line(topPoint, bottomPoint);
-    line.strokeColor = new paper.Color("black");
+    line.strokeColor = new paper.Color('black');
   }
 
-  for (let i = 0; i <= verticalCellCount; i++) {
+  for (let i = 0; i <= verticalCellCount; i += 1) {
     const verticalOffset =
       Math.ceil(boundingRectangle.top / cellSize) * cellSize;
     const verticalPosition = verticalOffset + i * cellSize;
@@ -120,12 +120,12 @@ function drawGrid(boundingRectangle: paper.Rectangle, cellSize: number) {
     );
 
     const line = new paper.Path.Line(leftPoint, rightPoint);
-    line.strokeColor = new paper.Color("black");
+    line.strokeColor = new paper.Color('black');
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    "dance-stage": DanceStage;
+    'dance-stage': DanceStage;
   }
 }
